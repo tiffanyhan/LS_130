@@ -110,6 +110,14 @@ class TodoList
     text << todos.map(&:to_s).join("\n")
     text
   end
+
+  # ---- Methods that utilize blocks -----
+
+  def each
+    todos.each do |todo|
+      yield(todo)
+    end
+  end
 end
 
 
@@ -125,4 +133,7 @@ list = TodoList.new("Today's Todos")
 list.add(todo1)                 # adds todo1 to end of list, returns list
 list.add(todo2)                 # adds todo2 to end of list, returns list
 list.add(todo3)                 # adds todo3 to end of list, returns list
-list.add(1)
+
+list.each do |todo|
+  puts todo                   # calls Todo#to_s
+end
